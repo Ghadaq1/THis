@@ -4,7 +4,6 @@
   // ==== Preloader
   window.onload = function () {
     window.setTimeout(fadeout, 500);
-    setLogoSize();  // Ensure the logo is small on page load
   };
 
   function fadeout() {
@@ -12,39 +11,35 @@
     document.querySelector(".preloader").style.display = "none";
   }
 
-  // Set logo size to small initially
-  function setLogoSize() {
-    const logo = document.querySelector(".navbar-brand img");
-    logo.style.width = '150px'; // Small size
-    logo.style.height = 'auto'; // Maintain aspect ratio
-  }
-
-  // ======= Sticky Navbar on Scroll
+  // ======= Sticky
   window.onscroll = function () {
     const header_navbar = document.querySelector(".navbar-area");
     const sticky = header_navbar.offsetTop;
     const logo = document.querySelector(".navbar-brand img");
 
-    // Ensure the logo remains small, no resizing on scroll
-    logo.style.width = '150px';  // Keep logo small (no resizing on scroll)
-    logo.style.height = 'auto';  // Maintain aspect ratio
+  if (window.pageYOffset > sticky) {
+    header_navbar.classList.add("sticky");
+    logo.src = "assets/images/logo/Asset 2.png";
+    logo.style.width = '220px'; // Adjust the width to your desired size
+    logo.style.height = 'auto'; // Keeps the aspect ratio
+} else {
+    header_navbar.classList.remove("sticky");
+    logo.src = "assets/images/logo/scfifile white.png";
+    logo.style.width = '220px'; // Adjust the width to your desired size for the non-sticky state
+    logo.style.height = 'auto'; // Keeps the aspect ratio
+}
 
-    // Check if the page has been scrolled past the navbar
-    if (window.pageYOffset > sticky) {
-      header_navbar.classList.add("sticky"); // Navbar becomes sticky
-    } else {
-      header_navbar.classList.remove("sticky"); // Navbar removes sticky class
-    }
-
-    // Show or hide the back-to-top button based on scroll position
+    // show or hide the back-top-top button
     const backToTop = document.querySelector(".back-to-top");
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-      backToTop.style.display = "flex"; // Show the back-to-top button
+    if (
+      document.body.scrollTop > 50 ||
+      document.documentElement.scrollTop > 50
+    ) {
+      backToTop.style.display = "flex";
     } else {
-      backToTop.style.display = "none"; // Hide the back-to-top button
+      backToTop.style.display = "none";
     }
   };
-})();
 
 
 
