@@ -42,7 +42,6 @@
   };
 
 
-
   // ==== for menu scroll
   const pageLink = document.querySelectorAll(".page-scroll");
 
