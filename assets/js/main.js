@@ -15,20 +15,9 @@
   // Function to set the initial size of the logo based on the page scroll position
   function setInitialLogoSize() {
     const logo = document.querySelector(".navbar-brand img");
-    const header_navbar = document.querySelector(".navbar-area");
-    const sticky = header_navbar.offsetTop;
-
-    if (window.pageYOffset > sticky) {
-      // If the page has been scrolled beyond the navbar, apply the "sticky" logo size
-      logo.src = "assets/images/logo/Asset 2.png";
-      logo.style.width = '220px'; // Adjust the width to your desired size
-      logo.style.height = 'auto'; // Keeps the aspect ratio
-    } else {
-      // If the page has not been scrolled, use the default logo size
-      logo.src = "assets/images/logo/scfifile white.png";
-      logo.style.width = '220px'; // Adjust the width to your desired size for the non-sticky state
-      logo.style.height = 'auto'; // Keeps the aspect ratio
-    }
+    logo.src = "assets/images/logo/scfifile white.png";
+    logo.style.width = '220px'; // Set the default width
+    logo.style.height = 'auto'; // Maintain aspect ratio
   }
 
   // ======= Sticky
@@ -40,16 +29,17 @@
     if (window.pageYOffset > sticky) {
       header_navbar.classList.add("sticky");
       logo.src = "assets/images/logo/Asset 2.png";
-      logo.style.width = '220px'; // Adjust the width to your desired size
-      logo.style.height = 'auto'; // Keeps the aspect ratio
+      logo.style.width = '220px'; // Adjust the width for sticky state
+      logo.style.height = 'auto'; // Maintain aspect ratio
     } else {
       header_navbar.classList.remove("sticky");
       logo.src = "assets/images/logo/scfifile white.png";
-      logo.style.width = '220px'; // Adjust the width to your desired size for the non-sticky state
-      logo.style.height = 'auto'; // Keeps the aspect ratio
+      logo.style.width = '220px'; // Adjust the width for non-sticky state
+      logo.style.height = 'auto'; // Maintain aspect ratio
     }
   };
 })();
+
 
   // ==== for menu scroll
   const pageLink = document.querySelectorAll(".page-scroll");
