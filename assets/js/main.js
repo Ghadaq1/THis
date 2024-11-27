@@ -4,20 +4,11 @@
   // ==== Preloader
   window.onload = function () {
     window.setTimeout(fadeout, 500);
-    setInitialLogoSize();  // Ensure logo size is set correctly when the page loads
   };
 
   function fadeout() {
     document.querySelector(".preloader").style.opacity = "0";
     document.querySelector(".preloader").style.display = "none";
-  }
-
-  // Function to set the initial size of the logo based on the page scroll position
-  function setInitialLogoSize() {
-    const logo = document.querySelector(".navbar-brand img");
-    logo.src = "assets/images/logo/scfifile white.png";
-    logo.style.width = '220px'; // Set the default width
-    logo.style.height = 'auto'; // Maintain aspect ratio
   }
 
   // ======= Sticky
@@ -26,19 +17,30 @@
     const sticky = header_navbar.offsetTop;
     const logo = document.querySelector(".navbar-brand img");
 
-    if (window.pageYOffset > sticky) {
-      header_navbar.classList.add("sticky");
-      logo.src = "assets/images/logo/Asset 2.png";
-      logo.style.width = '220px'; // Adjust the width for sticky state
-      logo.style.height = 'auto'; // Maintain aspect ratio
+  if (window.pageYOffset > sticky) {
+    header_navbar.classList.add("sticky");
+    logo.src = "assets/images/logo/Asset 2.png";
+    logo.style.width = '220px'; // Adjust the width to your desired size
+    logo.style.height = 'auto'; // Keeps the aspect ratio
+} else {
+    header_navbar.classList.remove("sticky");
+    logo.src = "assets/images/logo/scfifile white.png";
+    logo.style.width = '220px'; // Adjust the width to your desired size for the non-sticky state
+    logo.style.height = 'auto'; // Keeps the aspect ratio
+}
+
+    // show or hide the back-top-top button
+    const backToTop = document.querySelector(".back-to-top");
+    if (
+      document.body.scrollTop > 50 ||
+      document.documentElement.scrollTop > 50
+    ) {
+      backToTop.style.display = "flex";
     } else {
-      header_navbar.classList.remove("sticky");
-      logo.src = "assets/images/logo/scfifile white.png";
-      logo.style.width = '220px'; // Adjust the width for non-sticky state
-      logo.style.height = 'auto'; // Maintain aspect ratio
+      backToTop.style.display = "none";
     }
   };
-})();
+
 
 
   // ==== for menu scroll
