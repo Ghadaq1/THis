@@ -4,7 +4,7 @@
   // ==== Preloader
   window.onload = function () {
     window.setTimeout(fadeout, 500);
-    setLogoSize();  // Ensure the logo stays small when the page loads
+    setLogoSize();  // Ensure the logo is small on page load
   };
 
   function fadeout() {
@@ -12,11 +12,10 @@
     document.querySelector(".preloader").style.display = "none";
   }
 
-  // Function to set the logo size when the page loads
+  // Set logo size to small initially
   function setLogoSize() {
     const logo = document.querySelector(".navbar-brand img");
-    // Set the logo size to a fixed small size (you can adjust this as needed)
-    logo.style.width = '150px'; // Small size for logo
+    logo.style.width = '150px'; // Small size
     logo.style.height = 'auto'; // Maintain aspect ratio
   }
 
@@ -26,29 +25,27 @@
     const sticky = header_navbar.offsetTop;
     const logo = document.querySelector(".navbar-brand img");
 
-    // Ensure the logo stays the same size (no resizing on scroll)
-    logo.style.width = '150px'; // Keep the logo at the same small size on scroll
-    logo.style.height = 'auto'; // Maintain aspect ratio
+    // Ensure the logo remains small, no resizing on scroll
+    logo.style.width = '150px';  // Keep logo small (no resizing on scroll)
+    logo.style.height = 'auto';  // Maintain aspect ratio
 
-    // Check if the page has scrolled past the navbar
+    // Check if the page has been scrolled past the navbar
     if (window.pageYOffset > sticky) {
-      header_navbar.classList.add("sticky"); // Add sticky class to navbar when scrolled
+      header_navbar.classList.add("sticky"); // Navbar becomes sticky
     } else {
-      header_navbar.classList.remove("sticky"); // Remove sticky class when at the top
+      header_navbar.classList.remove("sticky"); // Navbar removes sticky class
     }
 
     // Show or hide the back-to-top button based on scroll position
     const backToTop = document.querySelector(".back-to-top");
-    if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
-    ) {
-      backToTop.style.display = "flex"; // Show back-to-top button
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+      backToTop.style.display = "flex"; // Show the back-to-top button
     } else {
-      backToTop.style.display = "none"; // Hide back-to-top button
+      backToTop.style.display = "none"; // Hide the back-to-top button
     }
   };
 })();
+
 
 
   // ==== for menu scroll
