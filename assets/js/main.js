@@ -4,7 +4,7 @@
   // ==== Preloader
   window.onload = function () {
     window.setTimeout(fadeout, 500);
-    setNavbarAndLogoSize(); // Ensure the navbar and logo are set correctly on page load
+    setNavbarAndLogoSize(); // Ensure the logo stays the same size when the page loads
   };
 
   function fadeout() {
@@ -12,27 +12,20 @@
     document.querySelector(".preloader").style.display = "none";
   }
 
-  // Function to set the initial size of the logo based on the page scroll position
+  // Function to ensure the logo is the same size both when the page is loaded and scrolled
   function setNavbarAndLogoSize() {
     const header_navbar = document.querySelector(".navbar-area");
-    const sticky = header_navbar.offsetTop;
     const logo = document.querySelector(".navbar-brand img");
 
-    // Set the initial size of the logo before any scroll happens
-    logo.src = "assets/images/logo/scfifile white.png"; // Original logo for non-sticky state
-    logo.style.width = '220px'; // Set the desired width of the logo
+    // Set the logo size to be small (same size when not scrolled)
+    logo.style.width = '150px'; // Set the desired small size for logo
     logo.style.height = 'auto'; // Maintain aspect ratio
 
-    // Check if the page has already been scrolled beyond the navbar
-    if (window.pageYOffset > sticky) {
-      header_navbar.classList.add("sticky");
-      logo.src = "assets/images/logo/Asset 2.png"; // New logo for sticky state
-    } else {
-      header_navbar.classList.remove("sticky");
-    }
+    // Ensure navbar is not sticky when the page is loaded
+    header_navbar.classList.remove("sticky");
   }
 
-  // ======= Sticky on Scroll
+  // ======= Sticky on Scroll (no resizing of logo)
   window.onscroll = function () {
     const header_navbar = document.querySelector(".navbar-area");
     const sticky = header_navbar.offsetTop;
@@ -40,15 +33,9 @@
 
     // Check if the page has been scrolled past the navbar
     if (window.pageYOffset > sticky) {
-      header_navbar.classList.add("sticky");
-      logo.src = "assets/images/logo/Asset 2.png"; // New logo for sticky state
-      logo.style.width = '220px'; // Adjust the width for sticky state
-      logo.style.height = 'auto'; // Maintain aspect ratio
+      header_navbar.classList.add("sticky"); // Make navbar sticky when scrolled
     } else {
-      header_navbar.classList.remove("sticky");
-      logo.src = "assets/images/logo/scfifile white.png"; // Original logo
-      logo.style.width = '220px'; // Default width
-      logo.style.height = 'auto'; // Maintain aspect ratio
+      header_navbar.classList.remove("sticky"); // Remove sticky class when at the top
     }
   };
 })();
