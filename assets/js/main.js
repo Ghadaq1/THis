@@ -4,6 +4,7 @@
   // ==== Preloader
   window.onload = function () {
     window.setTimeout(fadeout, 500);
+    setNavbarAndLogoSize(); // Ensure the navbar and logo are set correctly on page load
   };
 
   function fadeout() {
@@ -11,23 +12,47 @@
     document.querySelector(".preloader").style.display = "none";
   }
 
-  // ======= Sticky
+  // Function to set the initial size of the logo based on the page scroll position
+  function setNavbarAndLogoSize() {
+    const header_navbar = document.querySelector(".navbar-area");
+    const sticky = header_navbar.offsetTop;
+    const logo = document.querySelector(".navbar-brand img");
+
+    // Set the initial size of the logo before any scroll happens
+    logo.src = "assets/images/logo/scfifile white.png"; // Original logo for non-sticky state
+    logo.style.width = '220px'; // Set the desired width of the logo
+    logo.style.height = 'auto'; // Maintain aspect ratio
+
+    // Check if the page has already been scrolled beyond the navbar
+    if (window.pageYOffset > sticky) {
+      header_navbar.classList.add("sticky");
+      logo.src = "assets/images/logo/Asset 2.png"; // New logo for sticky state
+    } else {
+      header_navbar.classList.remove("sticky");
+    }
+  }
+
+  // ======= Sticky on Scroll
   window.onscroll = function () {
     const header_navbar = document.querySelector(".navbar-area");
     const sticky = header_navbar.offsetTop;
     const logo = document.querySelector(".navbar-brand img");
 
-  if (window.pageYOffset > sticky) {
-    header_navbar.classList.add("sticky");
-    logo.src = "assets/images/logo/Asset 2.png";
-    logo.style.width = '220px'; // Adjust the width to your desired size
-    logo.style.height = 'auto'; // Keeps the aspect ratio
-} else {
-    header_navbar.classList.remove("sticky");
-    logo.src = "assets/images/logo/scfifile white.png";
-    logo.style.width = '220px'; // Adjust the width to your desired size for the non-sticky state
-    logo.style.height = 'auto'; // Keeps the aspect ratio
-}
+    // Check if the page has been scrolled past the navbar
+    if (window.pageYOffset > sticky) {
+      header_navbar.classList.add("sticky");
+      logo.src = "assets/images/logo/Asset 2.png"; // New logo for sticky state
+      logo.style.width = '220px'; // Adjust the width for sticky state
+      logo.style.height = 'auto'; // Maintain aspect ratio
+    } else {
+      header_navbar.classList.remove("sticky");
+      logo.src = "assets/images/logo/scfifile white.png"; // Original logo
+      logo.style.width = '220px'; // Default width
+      logo.style.height = 'auto'; // Maintain aspect ratio
+    }
+  };
+})();
+
 
     // show or hide the back-top-top button
     const backToTop = document.querySelector(".back-to-top");
