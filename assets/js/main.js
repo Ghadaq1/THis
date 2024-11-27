@@ -4,6 +4,7 @@
   // ==== Preloader
   window.onload = function () {
     window.setTimeout(fadeout, 500);
+    setLogoSize();  // Ensure the logo stays small when the page loads
   };
 
   function fadeout() {
@@ -11,35 +12,44 @@
     document.querySelector(".preloader").style.display = "none";
   }
 
-  // ======= Sticky
+  // Function to set the logo size when the page loads
+  function setLogoSize() {
+    const logo = document.querySelector(".navbar-brand img");
+    // Set the logo size to a fixed small size (you can adjust this as needed)
+    logo.style.width = '150px'; // Small size for logo
+    logo.style.height = 'auto'; // Maintain aspect ratio
+  }
+
+  // ======= Sticky Navbar on Scroll
   window.onscroll = function () {
     const header_navbar = document.querySelector(".navbar-area");
     const sticky = header_navbar.offsetTop;
     const logo = document.querySelector(".navbar-brand img");
 
-  if (window.pageYOffset > sticky) {
-    header_navbar.classList.add("sticky");
-    logo.src = "assets/images/logo/Asset 2.png";
-    logo.style.width = '220px'; // Adjust the width to your desired size
-    logo.style.height = 'auto'; // Keeps the aspect ratio
-} else {
-    header_navbar.classList.remove("sticky");
-    logo.src = "assets/images/logo/scfifile white.png";
-    logo.style.width = '220px'; // Adjust the width to your desired size for the non-sticky state
-    logo.style.height = 'auto'; // Keeps the aspect ratio
-}
+    // Ensure the logo stays the same size (no resizing on scroll)
+    logo.style.width = '150px'; // Keep the logo at the same small size on scroll
+    logo.style.height = 'auto'; // Maintain aspect ratio
 
-    // show or hide the back-top-top button
+    // Check if the page has scrolled past the navbar
+    if (window.pageYOffset > sticky) {
+      header_navbar.classList.add("sticky"); // Add sticky class to navbar when scrolled
+    } else {
+      header_navbar.classList.remove("sticky"); // Remove sticky class when at the top
+    }
+
+    // Show or hide the back-to-top button based on scroll position
     const backToTop = document.querySelector(".back-to-top");
     if (
       document.body.scrollTop > 50 ||
       document.documentElement.scrollTop > 50
     ) {
-      backToTop.style.display = "flex";
+      backToTop.style.display = "flex"; // Show back-to-top button
     } else {
-      backToTop.style.display = "none";
+      backToTop.style.display = "none"; // Hide back-to-top button
     }
   };
+})();
+
 
   // ==== for menu scroll
   const pageLink = document.querySelectorAll(".page-scroll");
