@@ -4,6 +4,7 @@
   // ==== Preloader
   window.onload = function () {
     window.setTimeout(fadeout, 500);
+    setInitialLogo(); // Set the initial logo when the page loads
   };
 
   function fadeout() {
@@ -11,35 +12,30 @@
     document.querySelector(".preloader").style.display = "none";
   }
 
-  // ======= Sticky
+  // Set initial logo when the page loads
+  function setInitialLogo() {
+    const logo = document.querySelector(".navbar-brand img");
+    logo.src = "assets/images/logo/scfifile white.png";  // Default logo on page load
+    logo.style.width = 'auto';  // Keep original size (no resizing here)
+    logo.style.height = 'auto';  // Maintain aspect ratio
+  }
+
+  // ======= Sticky Navbar on Scroll
   window.onscroll = function () {
     const header_navbar = document.querySelector(".navbar-area");
-    const sticky = header_navbar.offsetTop;
     const logo = document.querySelector(".navbar-brand img");
+    const sticky = header_navbar.offsetTop;
 
-  if (window.pageYOffset > sticky) {
-    header_navbar.classList.add("sticky");
-    logo.src = "assets/images/logo/Asset 2.png";
-    logo.style.width = '220px'; // Adjust the width to your desired size
-    logo.style.height = 'auto'; // Keeps the aspect ratio
-} else {
-    header_navbar.classList.remove("sticky");
-    logo.src = "assets/images/logo/scfifile white.png";
-    logo.style.width = '220px'; // Adjust the width to your desired size for the non-sticky state
-    logo.style.height = 'auto'; // Keeps the aspect ratio
-}
-
-    // show or hide the back-top-top button
-    const backToTop = document.querySelector(".back-to-top");
-    if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
-    ) {
-      backToTop.style.display = "flex";
+    // When scrolling, change the logo to Asset 2.png on the sticky navbar
+    if (window.pageYOffset > sticky) {
+      header_navbar.classList.add("sticky");  // Make navbar sticky
+      logo.src = "assets/images/logo/Asset 2.png";  // Change logo when scrolling
     } else {
-      backToTop.style.display = "none";
+      header_navbar.classList.remove("sticky");  // Remove sticky class when at top
+      logo.src = "assets/images/logo/scfifile white.png";  // Revert to initial logo
     }
   };
+})();
 
   // ==== for menu scroll
   const pageLink = document.querySelectorAll(".page-scroll");
